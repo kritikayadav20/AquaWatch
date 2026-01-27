@@ -6,6 +6,7 @@ import { supabase } from '@/lib/supabaseClient'
 import { Button } from '@/components/ui/Button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/Card'
 import { StatusBadge } from '@/components/ui/StatusBadge'
+import SubmissionsMap from '@/components/SubmissionsMap'
 import { Check, X, MapPin, Filter, BarChart3, Clock, CheckCircle } from 'lucide-react'
 
 type Submission = {

@@ -22,7 +22,7 @@ type MapProps = {
 
 export default function SubmissionsMap({ submissions, center, zoom }: MapProps) {
     const { isLoaded } = useJsApiLoader({
-        id: 'google-map-script-main',
+        id: 'google-map-script',
         googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY || "",
         libraries: libraries
     })

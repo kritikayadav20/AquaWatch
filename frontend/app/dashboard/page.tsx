@@ -114,7 +114,7 @@ export default function Dashboard() {
                         </CardHeader>
                         <CardContent>
                             <div className="text-3xl font-bold text-slate-900 font-display">{profile?.wallet_balance || 0}</div>
-                            <p className="text-xs text-slate-500 mt-1">Available points to redeem</p>
+                            <p className="text-xs text-slate-500 mt-1">Available points to redeem <span className="text-primary-600 font-semibold">(1 Point = ₹10)</span></p>
                         </CardContent>
                     </Card>
 
