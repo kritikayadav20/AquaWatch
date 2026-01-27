@@ -155,6 +155,11 @@ export default function AdminDashboard() {
                     </Card>
                 </div>
 
+                {/* Map View */}
+                <div className="h-[400px] bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden relative">
+                    <SubmissionsMap submissions={filteredSubmissions} />
+                </div>
+
                 <div className="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
                     <div className="p-6 border-b border-slate-100 flex justify-between items-center">
                         <h2 className="text-lg font-bold text-slate-900 font-display">Submissions</h2>
