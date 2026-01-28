@@ -8,7 +8,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/Card'
 import { StatusBadge } from '@/components/ui/StatusBadge'
 import SubmissionsMap from '@/components/SubmissionsMap'
 import { ValidateCoupon } from '@/components/admin/ValidateCoupon'
-import { Check, X, MapPin, Filter, BarChart3, Clock, CheckCircle } from 'lucide-react'
+import { Check, X, MapPin, Filter, BarChart3, Clock, CheckCircle, ShieldCheck } from 'lucide-react'
 
 type Submission = {
     id: string
@@ -99,7 +99,7 @@ export default function AdminDashboard() {
         : submissions.filter(s => s.status === filter)
 
     if (loading) return (
-        <div className="flex h-screen items-center justify-center bg-slate-50">
+        <div className="flex h-screen items-center justify-center">
             <div className="flex flex-col items-center">
                 <div className="w-12 h-12 border-4 border-primary-200 border-t-primary-600 rounded-full animate-spin"></div>
                 <p className="mt-4 text-slate-500 font-medium">Loading Admin Panel...</p>
@@ -108,95 +108,125 @@ export default function AdminDashboard() {
     )
 
     return (
-        <div className="min-h-screen bg-slate-50 py-12 px-4 sm:px-6 lg:px-8">
+        <div className="min-h-screen py-12 px-4 sm:px-6 lg:px-8">
             <div className="max-w-7xl mx-auto space-y-8">
-                <div className="flex justify-between items-center">
-                    <div>
-                        <h1 className="text-3xl font-bold text-slate-900 font-display">Admin Control Center</h1>
-                        <p className="text-slate-500 mt-1">Manage and verify community submissions</p>
+                <div className="flex justify-between items-center bg-gradient-to-r from-sky-100/80 via-teal-100/80 to-emerald-100/80 backdrop-blur-xl p-8 rounded-[2rem] border border-white shadow-lg shadow-teal-900/5 relative overflow-hidden">
+                    <div className="absolute top-0 right-0 w-64 h-64 bg-white/40 rounded-full blur-3xl -mr-32 -mt-32 pointer-events-none mix-blend-overlay"></div>
+                    <div className="flex items-center gap-6 relative z-10">
+                        <div className="p-4 bg-white/80 rounded-2xl text-teal-700 shadow-sm ring-1 ring-teal-100">
+                            <ShieldCheck className="w-10 h-10" />
+                        </div>
+                        <div>
+                            <h1 className="text-4xl font-black text-slate-900 font-display tracking-tight">Admin & Control</h1>
+                            <p className="text-slate-600 mt-1 font-medium text-lg">Manage community submissions & impact</p>
+                        </div>
                     </div>
                 </div>
 
                 {/* KPI Cards */}
-                <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-                    <Card>
+                <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+                    <Card className="border-none bg-gradient-to-br from-amber-50 to-orange-50/50 shadow-lg shadow-amber-500/10 hover:shadow-xl hover:shadow-amber-500/20 transition-all duration-300 transform hover:-translate-y-1">
                         <CardHeader className="flex flex-row items-center justify-between pb-2">
-                            <CardTitle className="text-xs font-bold text-slate-400 uppercase tracking-wider">Pending Reviews</CardTitle>
-                            <Clock className="w-4 h-4 text-amber-500" />
+                            <CardTitle className="text-xs font-bold text-amber-700 uppercase tracking-widest">Pending Reviews</CardTitle>
+                            <div className="p-2 bg-amber-100 rounded-full text-amber-600">
+                                <Clock className="w-5 h-5" />
+                            </div>
                         </CardHeader>
                         <CardContent>
-                            <div className="text-2xl font-bold text-slate-900">{submissions.filter(s => s.status === 'pending').length}</div>
+                            <div className="text-4xl font-black text-slate-900 font-display">{submissions.filter(s => s.status === 'pending').length}</div>
+                            <p className="text-xs text-amber-600/80 font-medium mt-1">Awaiting verification</p>
                         </CardContent>
                     </Card>
-                    <Card>
+                    <Card className="border-none bg-gradient-to-br from-sky-50 to-blue-50/50 shadow-lg shadow-sky-500/10 hover:shadow-xl hover:shadow-sky-500/20 transition-all duration-300 transform hover:-translate-y-1">
                         <CardHeader className="flex flex-row items-center justify-between pb-2">
-                            <CardTitle className="text-xs font-bold text-slate-400 uppercase tracking-wider">Accepted</CardTitle>
-                            <CheckCircle className="w-4 h-4 text-primary-500" />
+                            <CardTitle className="text-xs font-bold text-sky-700 uppercase tracking-widest">Accepted</CardTitle>
+                            <div className="p-2 bg-sky-100 rounded-full text-sky-600">
+                                <CheckCircle className="w-5 h-5" />
+                            </div>
                         </CardHeader>
                         <CardContent>
-                            <div className="text-2xl font-bold text-slate-900">{submissions.filter(s => s.status === 'accepted').length}</div>
+                            <div className="text-4xl font-black text-slate-900 font-display">{submissions.filter(s => s.status === 'accepted').length}</div>
+                            <p className="text-xs text-sky-600/80 font-medium mt-1">Verified reports</p>
                         </CardContent>
                     </Card>
-                    <Card>
+                    <Card className="border-none bg-gradient-to-br from-emerald-50 to-green-50/50 shadow-lg shadow-emerald-500/10 hover:shadow-xl hover:shadow-emerald-500/20 transition-all duration-300 transform hover:-translate-y-1">
                         <CardHeader className="flex flex-row items-center justify-between pb-2">
-                            <CardTitle className="text-xs font-bold text-slate-400 uppercase tracking-wider">Completed (Cleaned)</CardTitle>
-                            <CheckCircle className="w-4 h-4 text-green-500" />
+                            <CardTitle className="text-xs font-bold text-emerald-700 uppercase tracking-widest">Completed</CardTitle>
+                            <div className="p-2 bg-emerald-100 rounded-full text-emerald-600">
+                                <CheckCircle className="w-5 h-5" />
+                            </div>
                         </CardHeader>
                         <CardContent>
-                            <div className="text-2xl font-bold text-slate-900">{submissions.filter(s => s.status === 'completed').length}</div>
+                            <div className="text-4xl font-black text-slate-900 font-display">{submissions.filter(s => s.status === 'completed').length}</div>
+                            <p className="text-xs text-emerald-600/80 font-medium mt-1">Successfully cleaned</p>
                         </CardContent>
                     </Card>
-                    <Card>
+                    <Card className="border-none bg-gradient-to-br from-violet-50 to-purple-50/50 shadow-lg shadow-violet-500/10 hover:shadow-xl hover:shadow-violet-500/20 transition-all duration-300 transform hover:-translate-y-1">
                         <CardHeader className="flex flex-row items-center justify-between pb-2">
-                            <CardTitle className="text-xs font-bold text-slate-400 uppercase tracking-wider">Total Reports</CardTitle>
-                            <BarChart3 className="w-4 h-4 text-slate-400" />
+                            <CardTitle className="text-xs font-bold text-violet-700 uppercase tracking-widest">Total Reports</CardTitle>
+                            <div className="p-2 bg-violet-100 rounded-full text-violet-600">
+                                <BarChart3 className="w-5 h-5" />
+                            </div>
                         </CardHeader>
                         <CardContent>
-                            <div className="text-2xl font-bold text-slate-900">{submissions.length}</div>
+                            <div className="text-4xl font-black text-slate-900 font-display">{submissions.length}</div>
+                            <p className="text-xs text-violet-600/80 font-medium mt-1">All time data</p>
                         </CardContent>
                     </Card>
                 </div>
 
                 {/* Map View */}
-                <div className="h-[400px] bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden relative">
+                <div className="h-[400px] bg-white rounded-3xl shadow-lg shadow-slate-200/50 border border-slate-100 overflow-hidden relative">
                     <SubmissionsMap submissions={filteredSubmissions} />
                 </div>
 
-                <div className="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
-                    <div className="p-6 border-b border-slate-100 flex justify-between items-center">
-                        <h2 className="text-lg font-bold text-slate-900 font-display">Submissions</h2>
-                        <div className="flex bg-slate-100 p-1 rounded-lg">
-                            {['all', 'pending', 'accepted', 'completed', 'rejected'].map((f) => (
-                                <button
-                                    key={f}
-                                    onClick={() => setFilter(f)}
-                                    className={`px-4 py-1.5 rounded-md text-xs font-semibold capitalize transition-all ${filter === f ? 'bg-white text-slate-900 shadow-sm' : 'text-slate-500 hover:text-slate-700'}`}
-                                >
-                                    {f}
-                                </button>
-                            ))}
+                <div className="bg-white/80 backdrop-blur-xl rounded-3xl shadow-xl shadow-slate-200/50 border border-white/60 overflow-hidden">
+                    <div className="p-6 border-b border-slate-100 flex flex-col md:flex-row justify-between items-center gap-4">
+                        <div className="flex items-center gap-3">
+                            <Filter className="w-5 h-5 text-slate-400" />
+                            <h2 className="text-lg font-bold text-slate-900 font-display">Submission Feed</h2>
+                        </div>
+                        <div className="flex bg-slate-100/80 p-1.5 rounded-full shadow-inner ring-1 ring-slate-200/50">
+                            {['all', 'pending', 'accepted', 'completed', 'rejected'].map((f) => {
+                                const activeColors: Record<string, string> = {
+                                    all: 'bg-white text-slate-900 shadow-sm',
+                                    pending: 'bg-amber-100 text-amber-800 shadow-sm ring-1 ring-amber-200',
+                                    accepted: 'bg-sky-100 text-sky-800 shadow-sm ring-1 ring-sky-200',
+                                    completed: 'bg-emerald-100 text-emerald-800 shadow-sm ring-1 ring-emerald-200',
+                                    rejected: 'bg-rose-100 text-rose-800 shadow-sm ring-1 ring-rose-200'
+                                }
+                                return (
+                                    <button
+                                        key={f}
+                                        onClick={() => setFilter(f)}
+                                        className={`px-5 py-2 rounded-full text-xs font-bold capitalize transition-all duration-300 ${filter === f ? activeColors[f] : 'text-slate-400 hover:text-slate-600 hover:bg-white/50'}`}
+                                    >
+                                        {f}
+                                    </button>
+                                )
+                            })}
                         </div>
                     </div>
 
                     <div className="overflow-x-auto">
                         <table className="min-w-full divide-y divide-slate-100">
-                            <thead className="bg-slate-50/50">
+                            <thead className="bg-primary-50/50">
                                 <tr>
-                                    <th className="px-6 py-4 text-left text-xs font-bold text-slate-500 uppercase tracking-wider">Evidence</th>
-                                    <th className="px-6 py-4 text-left text-xs font-bold text-slate-500 uppercase tracking-wider">Location & ID</th>
-                                    <th className="px-6 py-4 text-left text-xs font-bold text-slate-500 uppercase tracking-wider">Date</th>
-                                    <th className="px-6 py-4 text-left text-xs font-bold text-slate-500 uppercase tracking-wider">Status</th>
-                                    <th className="px-6 py-4 text-left text-xs font-bold text-slate-500 uppercase tracking-wider">Density (AI)</th>
-                                    <th className="px-6 py-4 text-right text-xs font-bold text-slate-500 uppercase tracking-wider">Actions</th>
+                                    <th className="px-6 py-4 text-left text-xs font-bold text-primary-800 uppercase tracking-wider">Evidence</th>
+                                    <th className="px-6 py-4 text-left text-xs font-bold text-primary-800 uppercase tracking-wider">Location & ID</th>
+                                    <th className="px-6 py-4 text-left text-xs font-bold text-primary-800 uppercase tracking-wider">Date</th>
+                                    <th className="px-6 py-4 text-left text-xs font-bold text-primary-800 uppercase tracking-wider">Status</th>
+                                    <th className="px-6 py-4 text-left text-xs font-bold text-primary-800 uppercase tracking-wider">Density (AI)</th>
+                                    <th className="px-6 py-4 text-right text-xs font-bold text-primary-800 uppercase tracking-wider">Actions</th>
                                 </tr>
                             </thead>
-                            <tbody className="bg-white divide-y divide-slate-100">
+                            <tbody className="bg-white/50 divide-y divide-slate-100">
                                 {filteredSubmissions.map((sub) => (
-                                    <tr key={sub.id} className="hover:bg-slate-50/50 transition-colors">
+                                    <tr key={sub.id} className="hover:bg-primary-50/30 transition-colors group">
                                         <td className="px-6 py-4 whitespace-nowrap">
-                                            <div className="relative h-16 w-16 group cursor-pointer overflow-hidden rounded-lg border border-slate-200">
+                                            <div className="relative h-16 w-16 group cursor-pointer overflow-hidden rounded-2xl border-2 border-white shadow-sm ring-1 ring-slate-100">
                                                 <a href={sub.image_url} target="_blank" rel="noopener noreferrer">
-                                                    <img src={sub.image_url} alt="Sub" className="h-full w-full object-cover group-hover:scale-110 transition-transform duration-500" />
+                                                    <img src={sub.image_url} alt="Sub" className="h-full w-full object-cover group-hover:scale-110 transition-transform duration-700" />
                                                 </a>
                                             </div>
                                         </td>
@@ -206,7 +236,7 @@ export default function AdminDashboard() {
                                                     href={`https://www.google.com/maps?q=${sub.latitude},${sub.longitude}`}
                                                     target="_blank"
                                                     rel="noopener noreferrer"
-                                                    className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-slate-50 text-slate-600 text-xs font-medium hover:bg-slate-100 transition-colors border border-slate-200"
+                                                    className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-slate-50 text-slate-600 text-xs font-bold hover:bg-primary-50 hover:text-primary-700 hover:border-primary-200 transition-all border border-slate-200 group-hover:shadow-sm"
                                                 >
                                                     <MapPin className="w-3 h-3" />
                                                     View Map
@@ -214,62 +244,61 @@ export default function AdminDashboard() {
                                             ) : (
                                                 <span className="text-slate-400 italic text-xs">No GPS</span>
                                             )}
-                                            <div className="text-[10px] text-slate-400 mt-1 font-mono uppercase tracking-wide">#{sub.id.substring(0, 8)}</div>
+                                            <div className="text-[10px] text-slate-400 mt-2 font-mono uppercase tracking-wide px-1">ID: {sub.id.substring(0, 8)}</div>
                                         </td>
                                         <td className="px-6 py-4 whitespace-nowrap text-sm text-slate-600 font-medium">
-                                            {new Date(sub.created_at).toLocaleDateString()}
+                                            {new Date(sub.created_at).toLocaleDateString(undefined, { month: 'short', day: 'numeric', year: 'numeric' })}
                                         </td>
                                         <td className="px-6 py-4 whitespace-nowrap">
                                             <StatusBadge status={sub.status} />
                                         </td>
                                         <td className="px-6 py-4 whitespace-nowrap text-sm">
                                             {sub.coverage_percent && sub.coverage_percent > 0 ? (
-                                                <div className="flex items-center gap-2">
-                                                    <div className="w-16 bg-slate-100 rounded-full h-1.5 overflow-hidden">
-                                                        <div className="bg-primary-600 h-1.5 rounded-full" style={{ width: `${sub.coverage_percent}%` }}></div>
+                                                <div className="flex flex-col gap-1.5">
+                                                    <span className="font-bold text-slate-900 text-lg leading-none">{sub.coverage_percent}%</span>
+                                                    <div className="w-20 bg-slate-100 rounded-full h-1.5 overflow-hidden">
+                                                        <div className={`h-1.5 rounded-full ${sub.coverage_percent > 75 ? 'bg-red-500' : sub.coverage_percent > 40 ? 'bg-amber-500' : 'bg-green-500'}`} style={{ width: `${sub.coverage_percent}%` }}></div>
                                                     </div>
-                                                    <span className="font-bold text-slate-700">{sub.coverage_percent}%</span>
                                                 </div>
                                             ) : (
-                                                <span className="text-slate-400 italic text-xs">Pending</span>
+                                                <span className="text-slate-400 italic text-xs">Calculated</span>
                                             )}
                                         </td>
                                         <td className="px-6 py-4 whitespace-nowrap text-right">
-                                            <div className="flex items-center justify-end gap-2">
+                                            <div className="flex items-center justify-end gap-2 opacity-80 group-hover:opacity-100 transition-opacity">
                                                 {sub.status === 'pending' && (
                                                     <>
                                                         <Button
                                                             size="sm"
-                                                            variant="primary"
+                                                            className="bg-green-100 text-green-700 hover:bg-green-200 hover:text-green-800 shadow-none border-transparent w-9 h-9 p-0"
                                                             onClick={() => handleStatusChange(sub.id, 'accepted', sub.user_id, sub.coverage_percent)}
-                                                            className="h-8 w-8 p-0 rounded-full"
-                                                            title="Accept"
-                                                            icon={<Check className="w-4 h-4" />}
+                                                            title="Accept Submission"
+                                                            icon={<Check className="w-5 h-5" />}
+                                                            iconPosition="left"
                                                         />
                                                         <Button
                                                             size="sm"
-                                                            variant="danger"
+                                                            className="bg-red-100 text-red-700 hover:bg-red-200 hover:text-red-800 shadow-none border-transparent w-9 h-9 p-0"
                                                             onClick={() => handleStatusChange(sub.id, 'rejected', sub.user_id, sub.coverage_percent)}
-                                                            className="h-8 w-8 p-0 rounded-full"
-                                                            title="Reject"
-                                                            icon={<X className="w-4 h-4" />}
+                                                            title="Reject Submission"
+                                                            icon={<X className="w-5 h-5" />}
+                                                            iconPosition="left"
                                                         />
                                                     </>
                                                 )}
                                                 {sub.status === 'accepted' && (
                                                     <Button
                                                         size="sm"
-                                                        variant="outline"
+                                                        className="bg-primary-100 text-primary-700 hover:bg-primary-200 border-none px-4"
                                                         onClick={() => handleStatusChange(sub.id, 'completed', sub.user_id, sub.coverage_percent)}
-                                                        className="h-8 text-green-600 hover:text-green-700 hover:bg-green-50 border-green-200 w-auto px-3"
                                                         title="Mark as Complete"
                                                         icon={<CheckCircle className="w-4 h-4" />}
                                                     >
-                                                        Mark as Complete
+                                                        Mark Cleaned
                                                     </Button>
                                                 )}
                                                 {(sub.status === 'completed' || sub.status === 'rejected') && (
-                                                    <span className="text-xs text-slate-400 font-medium px-2">No actions</span>
+                                                    <span className="text-xs text-slate-400 font-medium px-2 py-1 bg-slate-50 rounded-lg border border-slate-100">Archived</span>
                                                 )}
                                             </div>
                                         </td>
@@ -278,8 +307,12 @@ export default function AdminDashboard() {
                             </tbody>
                         </table>
                         {filteredSubmissions.length === 0 && (
-                            <div className="text-center py-12 text-slate-400">
-                                <p>No submissions found for this filter.</p>
+                            <div className="text-center py-20">
+                                <div className="w-16 h-16 bg-slate-50 rounded-full flex items-center justify-center mx-auto mb-4 text-slate-300">
+                                    <Filter className="w-8 h-8" />
+                                </div>
+                                <h3 className="text-lg font-bold text-slate-900 font-display">No submissions found</h3>
+                                <p className="text-slate-500 text-sm">Try adjusting your filters.</p>
                             </div>
                         )}
                     </div>
