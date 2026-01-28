@@ -8,7 +8,11 @@ import { User } from '@supabase/supabase-js'
 import { Button } from '@/components/ui/Button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/Card'
 import { StatusBadge } from '@/components/ui/StatusBadge'
-import { Wallet, Plus, MapPin, Calendar, Activity, AlertCircle } from 'lucide-react'
+import { Wallet, Plus, MapPin, Calendar, Activity, AlertCircle, Gift } from 'lucide-react'
+import { CouponsSection } from '@/components/dashboard/CouponsSection'
+import { RedeemModal } from '@/components/dashboard/RedeemModal'
+import { ParksSection } from '@/components/dashboard/ParksSection'
+import { redeemPoints, getMyCoupons, Coupon } from '@/lib/api'
 
 type Submission = {
     id: string
@@ -30,7 +34,33 @@ export default function Dashboard() {
     const [user, setUser] = useState<User | null>(null)
     const [profile, setProfile] = useState<Profile | null>(null)
     const [submissions, setSubmissions] = useState<Submission[]>([])
+    const [coupons, setCoupons] = useState<Coupon[]>([])
+    const [isRedeemOpen, setIsRedeemOpen] = useState(false)
     const [loading, setLoading] = useState(true)
+
+    const handleRedeem = async (points: number) => {
+        if (!user) return
+        try {
+            const newCoupon = await redeemPoints(user.id, points)
+            setCoupons([newCoupon, ...coupons])
+            // Update profile balance
+            if (profile) {
+                setProfile({ ...profile, wallet_balance: profile.wallet_balance - points })
+            }
+            alert(`Coupon Generated: ${newCoupon.code}`)
+        } catch (error: any) {
+            alert(error.message || "Redemption failed")
+        }
+    }
+
+    const refreshData = async () => {
+        if (user) {
+            try {
+                const userCoupons = await getMyCoupons(user.id)
+                setCoupons(userCoupons)
+            } catch (e) { console.error(e) }
+        }
+    }
 
     useEffect(() => {
         const fetchData = async () => {
@@ -60,6 +90,14 @@ export default function Dashboard() {
                 setSubmissions(submissionData as Submission[])
             }
 
+            // Fetch Coupons
+            try {
+                const userCoupons = await getMyCoupons(user.id)
+                setCoupons(userCoupons)
+            } catch (error) {
+                console.error("Failed to fetch coupons", error)
+            }
+
             setLoading(false)
         }
 
@@ -86,6 +124,13 @@ export default function Dashboard() {
                     </div>
 
                     <div className="flex gap-3">
+                        <Button
+                            className="bg-pink-600 hover:bg-pink-700 text-white border-pink-700 shadow-md shadow-pink-500/20"
+                            icon={<Gift className="w-5 h-5" />}
+                            onClick={() => setIsRedeemOpen(true)}
+                        >
+                            Redeem Points
+                        </Button>
                         <Button
                             variant="outline"
                             onClick={async () => {
@@ -146,6 +191,25 @@ export default function Dashboard() {
                         </CardContent>
                     </Card>
                 </div>
+
+                {/* Coupons Section */}
+                <CouponsSection coupons={coupons} />
+
+                {/* Parks Redemption Section - Users Only */}
+                {profile?.role !== 'admin' && (
+                    <ParksSection
+                        userId={user?.id || ''}
+                        activeCoupons={coupons.filter(c => c.status === 'active')}
+                        onTicketRedeemed={refreshData}
+                    />
+                )}
+
+                <RedeemModal
+                    isOpen={isRedeemOpen}
+                    onClose={() => setIsRedeemOpen(false)}
+                    onRedeem={handleRedeem}
+                    maxPoints={profile?.wallet_balance || 0}
+                />
 
                 {/* Recent Submissions */}
                 <div className="space-y-6">
