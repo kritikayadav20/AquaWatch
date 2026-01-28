@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { createPortal } from 'react-dom'
 import { Park, Coupon, getParks, redeemParkTicket } from '@/lib/api'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/Card'
 import { Button } from '@/components/ui/Button'
@@ -15,6 +16,12 @@ export function ParksSection({ userId, activeCoupons, onTicketRedeemed }: ParksS
     const [loading, setLoading] = useState(true)
     const [redeeming, setRedeeming] = useState(false)
     const [isOpen, setIsOpen] = useState(false)
+
+    const [mounted, setMounted] = useState(false)
+
+    useEffect(() => {
+        setMounted(true)
+    }, [])
 
     useEffect(() => {
         if (isOpen && parks.length === 0) {
@@ -65,9 +72,9 @@ export function ParksSection({ userId, activeCoupons, onTicketRedeemed }: ParksS
                 </Button>
             </div>
 
-            {isOpen && (
-                <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm animate-in fade-in duration-200">
-                    <div className="bg-white rounded-2xl shadow-2xl w-full max-w-5xl h-[80vh] flex flex-col overflow-hidden animate-in zoom-in-95 duration-200">
+            {isOpen && mounted && createPortal(
+                <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm animate-in fade-in duration-200">
+                    <div className="bg-white rounded-2xl shadow-2xl w-full max-w-5xl h-[80vh] flex flex-col overflow-hidden animate-in zoom-in-95 duration-200 relative">
                         <div className="flex justify-between items-center p-6 border-b border-slate-100 flex-shrink-0">
                             <h3 className="text-xl font-bold text-slate-900 font-display flex items-center gap-2">
                                 <Ticket className="w-5 h-5 text-green-600" />
@@ -128,7 +135,8 @@ export function ParksSection({ userId, activeCoupons, onTicketRedeemed }: ParksS
                             )}
                         </div>
                     </div>
-                </div>
+                </div>,
+                document.body
             )}
         </>
     )

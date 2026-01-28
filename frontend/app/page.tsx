@@ -107,14 +107,14 @@ export default function Home() {
       )}
 
       {/* Hero Section */}
-      <section className="relative w-full overflow-hidden bg-slate-50 pt-16 pb-12 lg:pt-24 lg:pb-16">
+      <section className="relative w-full overflow-hidden pt-20 pb-16 lg:pt-32 lg:pb-24">
 
         {/* Absolute Login Button for Landing Page Modal */}
         <div className="absolute top-6 right-6 z-20 md:hidden">
-          {/* Mobile: relying on Global Nav, or add small icon if needed */}
+          {/* Mobile: relying on Global Nav */}
         </div>
-        <div className="absolute top-4 right-4 z-20 hidden md:block">
-          <Button onClick={() => setShowLogin(true)} variant="ghost" className="text-slate-600 hover:text-primary-600 hover:bg-white/50">
+        <div className="absolute top-6 right-6 z-20 hidden md:block">
+          <Button onClick={() => setShowLogin(true)} variant="ghost" className="text-slate-600 hover:text-primary-600 hover:bg-white/50 backdrop-blur-sm">
             <LogIn className="w-4 h-4 mr-2" /> Member Login
           </Button>
         </div>
@@ -122,22 +122,22 @@ export default function Home() {
         {/* Animated Background Blobs */}
         <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
           <div className="absolute top-[10%] left-1/4 w-[600px] h-[600px] bg-primary-200/40 rounded-full mix-blend-multiply filter blur-3xl opacity-50 animate-blob"></div>
-          <div className="absolute top-[20%] right-1/4 w-[500px] h-[500px] bg-secondary-200/40 rounded-full mix-blend-multiply filter blur-3xl opacity-50 animate-blob animation-delay-2000"></div>
-          <div className="absolute -bottom-[10%] left-1/2 w-[600px] h-[600px] bg-primary-100/40 rounded-full mix-blend-multiply filter blur-3xl opacity-50 animate-blob animation-delay-4000"></div>
+          <div className="absolute top-[20%] right-1/4 w-[500px] h-[500px] bg-secondary-200/40 rounded-full mix-blend-multiply filter blur-3xl opacity-50 animate-blob delay-2000"></div>
+          <div className="absolute -bottom-[10%] left-1/2 w-[600px] h-[600px] bg-primary-100/40 rounded-full mix-blend-multiply filter blur-3xl opacity-50 animate-blob delay-4000"></div>
         </div>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10 flex flex-col items-center text-center">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/80 border border-slate-200 shadow-sm mb-6 backdrop-blur-sm animate-in fade-in slide-in-from-bottom-5 duration-700">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/60 border border-white/50 shadow-sm mb-8 backdrop-blur-md animate-fade-in">
             <span className="flex h-2 w-2 rounded-full bg-secondary-500 animate-pulse"></span>
-            <span className="text-sm font-semibold text-slate-700 tracking-wide uppercase text-[11px]">Verified Community Data</span>
+            <span className="text-sm font-bold text-slate-600 tracking-wide uppercase text-[11px]">Verified Community Data</span>
           </div>
 
-          <h1 className="text-6xl md:text-8xl font-black text-slate-900 mb-6 tracking-tight font-display text-balance animate-in fade-in slide-in-from-bottom-5 duration-1000">
+          <h1 className="text-6xl md:text-8xl font-black text-slate-900 mb-8 tracking-tight font-display text-balance animate-enter">
             Welcome to <br />
             <span className="bg-clip-text text-transparent bg-gradient-to-r from-primary-600 to-secondary-500">AquaWatch</span>
           </h1>
 
-          <div className="max-w-3xl mx-auto mb-8 animate-in fade-in slide-in-from-bottom-8 duration-1000 delay-100">
+          <div className="max-w-3xl mx-auto mb-10 animate-enter delay-200">
             <p className="text-xl md:text-2xl text-slate-700 font-medium mb-4 leading-relaxed">
               "Preserving our waters, one report at a time."
             </p>
@@ -146,15 +146,15 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center animate-in fade-in slide-in-from-bottom-12 duration-1000 delay-200 w-full sm:w-auto mb-10">
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center animate-scale-in delay-300 w-full sm:w-auto mb-16">
             <Link href="/register" className="w-full sm:w-auto">
-              <Button size="lg" className="w-full sm:w-auto rounded-full font-bold text-lg h-12 px-8 shadow-xl shadow-primary-500/20 group">
+              <Button size="lg" className="w-full sm:w-auto rounded-full font-bold text-lg h-14 px-10 shadow-xl shadow-primary-500/20 group hover:shadow-primary-500/40 transition-all duration-300">
                 Start Monitoring
-                <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </Button>
             </Link>
             <Link href="#impact-map" className="w-full sm:w-auto">
-              <Button variant="secondary" size="lg" className="w-full sm:w-auto rounded-full font-bold text-lg h-12 px-8 bg-white/50 backdrop-blur-sm border-slate-200 hover:bg-white/80">
+              <Button variant="secondary" size="lg" className="w-full sm:w-auto rounded-full font-bold text-lg h-14 px-10 bg-white/60 backdrop-blur-md border-white hover:bg-white/80 transition-all duration-300">
                 View Live Map
               </Button>
             </Link>
@@ -163,61 +163,59 @@ export default function Home() {
       </section>
 
       {/* Global Impact Map Section */}
-      <section id="impact-map" className="py-12 px-4 bg-white relative z-10 -mt-10">
-        <div className="max-w-7xl mx-auto mb-10 text-center">
+      <section id="impact-map" className="py-12 px-4 relative z-10 -mt-10">
+        <div className="max-w-7xl mx-auto mb-10 text-center animate-fade-in delay-500">
           <h2 className="text-4xl font-bold text-slate-900 mb-4 font-display">Live Impact Tracker</h2>
           <p className="text-lg text-slate-600 max-w-3xl mx-auto">
             See real-time reports from our community. <span className="text-red-500 font-bold">Red</span> markers indicate high infestation levels requiring immediate attention.
           </p>
         </div>
 
-        <div className="max-w-7xl mx-auto h-[600px] rounded-3xl overflow-hidden shadow-2xl border-4 border-white ring-1 ring-slate-200 relative">
+        <div className="max-w-7xl mx-auto h-[600px] rounded-[2.5rem] overflow-hidden shadow-2xl shadow-primary-900/10 border-4 border-white ring-1 ring-slate-100 relative animate-scale-in delay-700">
           <SubmissionsMap submissions={mapSubmissions} zoom={12} />
 
-          {/* Map Filters Overlay (Visual Only for now) */}
-          <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-md p-2 rounded-xl border border-slate-200 shadow-lg flex flex-col gap-2">
-            <div className="text-xs font-bold text-slate-400 uppercase tracking-wider px-2 pt-1">Legend</div>
-            <div className="flex items-center gap-2 px-2 py-1">
-              <span className="w-3 h-3 rounded-full bg-red-500"></span>
-              <span className="text-sm font-medium text-slate-700">Critical ({'>'}50%)</span>
+          {/* Map Filters Overlay */}
+          <div className="absolute top-6 left-6 bg-white/90 backdrop-blur-xl p-4 rounded-2xl border border-white/50 shadow-lg flex flex-col gap-3">
+            <div className="text-xs font-bold text-slate-400 uppercase tracking-wider px-1">Legend</div>
+            <div className="flex items-center gap-2.5 px-1">
+              <span className="w-3 h-3 rounded-full bg-red-500 shadow-sm shadow-red-500/50"></span>
+              <span className="text-sm font-bold text-slate-700">Critical ({'>'}50%)</span>
             </div>
-            <div className="flex items-center gap-2 px-2 py-1">
-              <span className="w-3 h-3 rounded-full bg-amber-500"></span>
-              <span className="text-sm font-medium text-slate-700">Moderate</span>
+            <div className="flex items-center gap-2.5 px-1">
+              <span className="w-3 h-3 rounded-full bg-amber-500 shadow-sm shadow-amber-500/50"></span>
+              <span className="text-sm font-bold text-slate-700">Moderate</span>
             </div>
-            <div className="flex items-center gap-2 px-2 py-1">
-              <span className="w-3 h-3 rounded-full bg-emerald-500"></span>
-              <span className="text-sm font-medium text-slate-700">Cleaned</span>
+            <div className="flex items-center gap-2.5 px-1">
+              <span className="w-3 h-3 rounded-full bg-emerald-500 shadow-sm shadow-emerald-500/50"></span>
+              <span className="text-sm font-bold text-slate-700">Cleaned</span>
             </div>
           </div>
         </div>
 
-        <div className="max-w-4xl mx-auto mt-16 text-center space-y-6">
-          <h3 className="text-2xl font-bold text-slate-900 font-display">About The Project</h3>
-          <p className="text-slate-600 leading-relaxed text-lg">
-            AquaWatch is an initiative designed to combat the rapid spread of invasive aquatic plants like Water Hyacinth.
-            By leveraging <strong>community participation</strong> and <strong>AI-powered analysis</strong>, we provide authorities
-            with precise, real-time data to optimize cleaning schedules and resource allocation.
+        <div className="max-w-4xl mx-auto mt-20 text-center space-y-8">
+          <h3 className="text-3xl font-bold text-slate-900 font-display">About The Project</h3>
+          <p className="text-slate-600 leading-relaxed text-xl font-medium text-balance">
+            AquaWatch is an initiative designed to combat the rapid spread of invasive aquatic plants like Water Hyacinth using <span className="text-primary-600">AI & Community Power</span>.
           </p>
-          <div className="grid md:grid-cols-3 gap-6 pt-8 text-left">
-            <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100">
+          <div className="grid md:grid-cols-3 gap-6 pt-4 text-left">
+            <div className="glass-card p-8 rounded-3xl">
               <div className="font-bold text-slate-900 text-lg mb-2">Decentralized Data</div>
-              <p className="text-sm text-slate-500">Anyone with a smartphone can contribute to the preservation of their local water bodies.</p>
+              <p className="text-sm text-slate-500 leading-relaxed">Anyone with a smartphone can contribute to the preservation of their local water bodies.</p>
             </div>
-            <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100">
+            <div className="glass-card p-8 rounded-3xl">
               <div className="font-bold text-slate-900 text-lg mb-2">Computer Vision</div>
-              <p className="text-sm text-slate-500">Our backend automatically calculates infestation density to prioritize high-risk zones.</p>
+              <p className="text-sm text-slate-500 leading-relaxed">Our backend automatically calculates infestation density to prioritize high-risk zones.</p>
             </div>
-            <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100">
+            <div className="glass-card p-8 rounded-3xl">
               <div className="font-bold text-slate-900 text-lg mb-2">Verified Impact</div>
-              <p className="text-sm text-slate-500">Admin verification ensures data integrity and proper rewarding of citizen scientists.</p>
+              <p className="text-sm text-slate-500 leading-relaxed">Admin verification ensures data integrity and proper rewarding of citizen scientists.</p>
             </div>
           </div>
         </div>
       </section>
 
       {/* Features Section */}
-      <section id="features" className="py-24 px-4 bg-slate-50 relative z-10">
+      <section id="features" className="py-24 px-4 relative z-10">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16 max-w-3xl mx-auto">
             <h2 className="text-4xl font-bold text-slate-900 mb-6 font-display">Advanced Tech. Simple Action.</h2>
@@ -225,8 +223,8 @@ export default function Home() {
           </div>
 
           <div className="grid md:grid-cols-3 gap-8">
-            <Card variant="interactive" className="p-8 h-full bg-white">
-              <div className="w-16 h-16 bg-primary-50 rounded-2xl flex items-center justify-center mb-6 text-primary-600">
+            <Card variant="glass" className="p-8 h-full hover:-translate-y-2 transition-transform duration-500">
+              <div className="w-16 h-16 bg-primary-50 rounded-2xl flex items-center justify-center mb-6 text-primary-600 shadow-sm">
                 <Camera className="w-8 h-8" strokeWidth={1.5} />
               </div>
               <h3 className="text-2xl font-bold mb-3 text-slate-900 font-display">Snap & Report</h3>
@@ -235,8 +233,8 @@ export default function Home() {
               </p>
             </Card>
 
-            <Card variant="interactive" className="p-8 h-full border-primary-100 shadow-md bg-white">
-              <div className="w-16 h-16 bg-gradient-to-br from-primary-500 to-secondary-500 text-white rounded-2xl flex items-center justify-center mb-6 shadow-lg shadow-primary-500/20">
+            <Card variant="glass" className="p-8 h-full border-primary-200/50 shadow-lg shadow-primary-500/5 hover:-translate-y-2 transition-transform duration-500">
+              <div className="w-16 h-16 bg-gradient-to-br from-primary-500 to-secondary-500 text-white rounded-2xl flex items-center justify-center mb-6 shadow-xl shadow-primary-500/30">
                 <ScanEye className="w-8 h-8" strokeWidth={1.5} />
               </div>
               <h3 className="text-2xl font-bold mb-3 text-slate-900 font-display">Smart Analysis</h3>
@@ -245,8 +243,8 @@ export default function Home() {
               </p>
             </Card>
 
-            <Card variant="interactive" className="p-8 h-full bg-white">
-              <div className="w-16 h-16 bg-secondary-50 rounded-2xl flex items-center justify-center mb-6 text-secondary-600">
+            <Card variant="glass" className="p-8 h-full hover:-translate-y-2 transition-transform duration-500">
+              <div className="w-16 h-16 bg-secondary-50 rounded-2xl flex items-center justify-center mb-6 text-secondary-600 shadow-sm">
                 <Trophy className="w-8 h-8" strokeWidth={1.5} />
               </div>
               <h3 className="text-2xl font-bold mb-3 text-slate-900 font-display">Community Rewards</h3>

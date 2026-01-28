@@ -114,10 +114,10 @@ export default function Dashboard() {
     )
 
     return (
-        <div className="min-h-screen bg-slate-50 py-12 px-4 sm:px-6 lg:px-8">
-            <div className="max-w-7xl mx-auto space-y-8">
+        <div className="min-h-screen py-12 px-4 sm:px-6 lg:px-8">
+            <div className="max-w-7xl mx-auto space-y-10">
                 {/* Header Section */}
-                <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6">
+                <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 animate-enter">
                     <div>
                         <h1 className="text-4xl font-bold text-slate-900 font-display">Dashboard</h1>
                         <p className="text-slate-500 mt-2 text-lg">Welcome back, <span className="font-semibold text-slate-900">{profile?.full_name || user?.email}</span></p>
@@ -149,8 +149,8 @@ export default function Dashboard() {
                 </div>
 
                 {/* Stats Grid */}
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    <Card className="border-l-4 border-l-primary-500">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 animate-enter delay-100">
+                    <Card variant="glass" className="border-l-4 border-l-primary-500">
                         <CardHeader className="flex flex-row items-center justify-between pb-2">
                             <CardTitle className="text-sm font-medium text-slate-500 uppercase tracking-wider font-sans">Wallet Balance</CardTitle>
                             <div className="p-2 bg-primary-50 rounded-lg text-primary-600">
@@ -163,7 +163,7 @@ export default function Dashboard() {
                         </CardContent>
                     </Card>
 
-                    <Card className="border-l-4 border-l-secondary-500">
+                    <Card variant="glass" className="border-l-4 border-l-secondary-500">
                         <CardHeader className="flex flex-row items-center justify-between pb-2">
                             <CardTitle className="text-sm font-medium text-slate-500 uppercase tracking-wider font-sans">Total Reports</CardTitle>
                             <div className="p-2 bg-secondary-50 rounded-lg text-secondary-600">
@@ -176,8 +176,8 @@ export default function Dashboard() {
                         </CardContent>
                     </Card>
 
-                    {/* Impact Card - Replaced gradient with simpler design if needed, but keeping gradient for pop */}
-                    <Card className="bg-slate-900 text-white border-none shadow-xl">
+                    {/* Impact Card */}
+                    <Card className="bg-slate-900 text-white border-none shadow-xl hover:-translate-y-1 transition-transform duration-300">
                         <CardContent className="h-full flex flex-col justify-center pt-6">
                             <div className="flex items-center gap-3 mb-2">
                                 <div className="p-1.5 bg-white/10 rounded-full">
@@ -193,15 +193,19 @@ export default function Dashboard() {
                 </div>
 
                 {/* Coupons Section */}
-                <CouponsSection coupons={coupons} />
+                <div className="animate-enter delay-200">
+                    <CouponsSection coupons={coupons} />
+                </div>
 
                 {/* Parks Redemption Section - Users Only */}
                 {profile?.role !== 'admin' && (
-                    <ParksSection
-                        userId={user?.id || ''}
-                        activeCoupons={coupons.filter(c => c.status === 'active')}
-                        onTicketRedeemed={refreshData}
-                    />
+                    <div className="animate-enter delay-300">
+                        <ParksSection
+                            userId={user?.id || ''}
+                            activeCoupons={coupons.filter(c => c.status === 'active')}
+                            onTicketRedeemed={refreshData}
+                        />
+                    </div>
                 )}
 
                 <RedeemModal
@@ -212,7 +216,7 @@ export default function Dashboard() {
                 />
 
                 {/* Recent Submissions */}
-                <div className="space-y-6">
+                <div className="space-y-6 animate-enter delay-500">
                     <div className="flex items-center justify-between">
                         <h2 className="text-2xl font-bold text-slate-900 font-display">Recent Activity</h2>
                         {submissions.length > 0 && (
@@ -223,7 +227,7 @@ export default function Dashboard() {
                     </div>
 
                     {submissions.length === 0 ? (
-                        <div className="text-center py-20 bg-white rounded-3xl border border-dashed border-slate-300 flex flex-col items-center justify-center">
+                        <div className="text-center py-20 bg-white/60 backdrop-blur-md rounded-[2rem] border border-dashed border-slate-300 flex flex-col items-center justify-center">
                             <div className="w-20 h-20 bg-slate-50 rounded-full flex items-center justify-center mb-4">
                                 <MapPin className="w-8 h-8 text-slate-300" />
                             </div>

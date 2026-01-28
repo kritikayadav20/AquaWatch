@@ -7,6 +7,7 @@ import { Button } from '@/components/ui/Button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/Card'
 import { StatusBadge } from '@/components/ui/StatusBadge'
 import SubmissionsMap from '@/components/SubmissionsMap'
+import AnalyticsOverview from '@/components/admin/AnalyticsOverview'
 import { ValidateCoupon } from '@/components/admin/ValidateCoupon'
 import { Check, X, MapPin, Filter, BarChart3, Clock, CheckCircle, ShieldCheck } from 'lucide-react'
 
@@ -174,6 +175,9 @@ export default function AdminDashboard() {
                         </CardContent>
                     </Card>
                 </div>
+
+                {/* Analytics Section */}
+                <AnalyticsOverview />
 
                 {/* Map View */}
                 <div className="h-[400px] bg-white rounded-3xl shadow-lg shadow-slate-200/50 border border-slate-100 overflow-hidden relative">

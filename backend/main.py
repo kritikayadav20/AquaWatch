@@ -47,8 +47,10 @@ async def analyze_image(file: UploadFile = File(...)):
         return {"coverage_percent": round(random.uniform(10.0, 90.0), 2)}
 
 # Include Routers
-from routers import coupons
+# Include Routers
+from routers import coupons, analytics
 app.include_router(coupons.router)
+app.include_router(analytics.router)
 
 if __name__ == "__main__":
     import uvicorn

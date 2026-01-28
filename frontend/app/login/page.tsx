@@ -47,14 +47,14 @@ export default function LoginPage() {
     }
 
     return (
-        <div className="flex items-center justify-center min-h-[calc(100vh-80px)] bg-slate-50 px-4 relative overflow-hidden">
+        <div className="flex items-center justify-center min-h-[calc(100vh-80px)] px-4 relative overflow-hidden">
             {/* Background Decoration */}
             <div className="absolute top-0 left-0 w-full h-full pointer-events-none overflow-hidden">
                 <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary-200/30 rounded-full mix-blend-multiply filter blur-3xl opacity-50 animate-blob"></div>
-                <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-secondary-200/30 rounded-full mix-blend-multiply filter blur-3xl opacity-50 animate-blob animation-delay-2000"></div>
+                <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-secondary-200/30 rounded-full mix-blend-multiply filter blur-3xl opacity-50 animate-blob delay-2000"></div>
             </div>
 
-            <Card variant="glass" className="w-full max-w-md p-8 relative z-10 animate-in fade-in zoom-in-95 duration-500">
+            <Card variant="glass" className="w-full max-w-md p-8 relative z-10 animate-scale-in">
                 <div className="text-center mb-8">
                     <div className="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-primary-50 text-primary-600 mb-4 shadow-sm">
                         <Lock className="w-6 h-6" />
