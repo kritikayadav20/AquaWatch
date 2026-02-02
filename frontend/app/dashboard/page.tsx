@@ -105,10 +105,10 @@ export default function Dashboard() {
     }, [router])
 
     if (loading) return (
-        <div className="flex h-screen items-center justify-center bg-slate-50">
+        <div className="flex h-screen items-center justify-center bg-[#0a1628]">
             <div className="flex flex-col items-center">
-                <div className="w-12 h-12 border-4 border-primary-200 border-t-primary-600 rounded-full animate-spin"></div>
-                <p className="mt-4 text-slate-500 font-medium">Loading Dashboard...</p>
+                <div className="w-12 h-12 border-4 border-primary-900 border-t-primary-500 rounded-full animate-spin"></div>
+                <p className="mt-4 text-slate-400 font-medium">Loading Dashboard...</p>
             </div>
         </div>
     )
@@ -119,8 +119,8 @@ export default function Dashboard() {
                 {/* Header Section */}
                 <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 animate-enter">
                     <div>
-                        <h1 className="text-4xl font-bold text-slate-900 font-display">Dashboard</h1>
-                        <p className="text-slate-500 mt-2 text-lg">Welcome back, <span className="font-semibold text-slate-900">{profile?.full_name || user?.email}</span></p>
+                        <h1 className="text-4xl font-bold text-slate-50 font-display">Dashboard</h1>
+                        <p className="text-slate-400 mt-2 text-lg">Welcome back, <span className="font-semibold text-slate-200">{profile?.full_name || user?.email}</span></p>
                     </div>
 
                     <div className="flex gap-3">
@@ -152,32 +152,32 @@ export default function Dashboard() {
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6 animate-enter delay-100">
                     <Card variant="glass" className="border-l-4 border-l-primary-500">
                         <CardHeader className="flex flex-row items-center justify-between pb-2">
-                            <CardTitle className="text-sm font-medium text-slate-500 uppercase tracking-wider font-sans">Wallet Balance</CardTitle>
-                            <div className="p-2 bg-primary-50 rounded-lg text-primary-600">
+                            <CardTitle className="text-sm font-medium text-slate-400 uppercase tracking-wider font-sans">Wallet Balance</CardTitle>
+                            <div className="p-2 bg-primary-900/50 rounded-lg text-primary-400">
                                 <Wallet className="w-5 h-5" />
                             </div>
                         </CardHeader>
                         <CardContent>
-                            <div className="text-3xl font-bold text-slate-900 font-display">{profile?.wallet_balance || 0}</div>
-                            <p className="text-xs text-slate-500 mt-1">Available points to redeem <span className="text-primary-600 font-semibold">(1 Point = ₹10)</span></p>
+                            <div className="text-3xl font-bold text-slate-50 font-display">{profile?.wallet_balance || 0}</div>
+                            <p className="text-xs text-slate-400 mt-1">Available points to redeem <span className="text-primary-400 font-semibold">(1 Point = ₹10)</span></p>
                         </CardContent>
                     </Card>
 
-                    <Card variant="glass" className="border-l-4 border-l-secondary-500">
+                    <Card variant="glass" className="border-l-4 border-l-primary-500">
                         <CardHeader className="flex flex-row items-center justify-between pb-2">
-                            <CardTitle className="text-sm font-medium text-slate-500 uppercase tracking-wider font-sans">Total Reports</CardTitle>
-                            <div className="p-2 bg-secondary-50 rounded-lg text-secondary-600">
+                            <CardTitle className="text-sm font-medium text-slate-400 uppercase tracking-wider font-sans">Total Reports</CardTitle>
+                            <div className="p-2 bg-primary-900/50 rounded-lg text-primary-400">
                                 <Activity className="w-5 h-5" />
                             </div>
                         </CardHeader>
                         <CardContent>
-                            <div className="text-3xl font-bold text-slate-900 font-display">{submissions.length}</div>
-                            <p className="text-xs text-slate-500 mt-1">Active contributions</p>
+                            <div className="text-3xl font-bold text-slate-50 font-display">{submissions.length}</div>
+                            <p className="text-xs text-slate-400 mt-1">Active contributions</p>
                         </CardContent>
                     </Card>
 
                     {/* Impact Card */}
-                    <Card className="bg-slate-900 text-white border-none shadow-xl hover:-translate-y-1 transition-transform duration-300">
+                    <Card className="bg-gradient-to-br from-primary-900 to-primary-800 text-white border-none shadow-xl hover:-translate-y-1 transition-transform duration-300">
                         <CardContent className="h-full flex flex-col justify-center pt-6">
                             <div className="flex items-center gap-3 mb-2">
                                 <div className="p-1.5 bg-white/10 rounded-full">
@@ -185,7 +185,7 @@ export default function Dashboard() {
                                 </div>
                                 <span className="font-medium text-primary-100">Impact Status</span>
                             </div>
-                            <p className="text-sm text-slate-300 leading-relaxed">
+                            <p className="text-sm text-slate-200 leading-relaxed">
                                 Your reports have helped clear an estimated <span className="text-white font-bold">120 sq ft</span> of invasive species this month. Keep it up!
                             </p>
                         </CardContent>
@@ -218,21 +218,21 @@ export default function Dashboard() {
                 {/* Recent Submissions */}
                 <div className="space-y-6 animate-enter delay-500">
                     <div className="flex items-center justify-between">
-                        <h2 className="text-2xl font-bold text-slate-900 font-display">Recent Activity</h2>
+                        <h2 className="text-2xl font-bold text-slate-50 font-display">Recent Activity</h2>
                         {submissions.length > 0 && (
-                            <span className="px-3 py-1 rounded-full bg-slate-100 text-slate-600 text-xs font-bold border border-slate-200">
+                            <span className="px-3 py-1 rounded-full bg-slate-700 text-slate-200 text-xs font-bold border border-slate-600">
                                 {submissions.length} Reports
                             </span>
                         )}
                     </div>
 
                     {submissions.length === 0 ? (
-                        <div className="text-center py-20 bg-white/60 backdrop-blur-md rounded-[2rem] border border-dashed border-slate-300 flex flex-col items-center justify-center">
-                            <div className="w-20 h-20 bg-slate-50 rounded-full flex items-center justify-center mb-4">
-                                <MapPin className="w-8 h-8 text-slate-300" />
+                        <div className="text-center py-20 bg-slate-800/60 backdrop-blur-md rounded-[2rem] border border-dashed border-slate-600 flex flex-col items-center justify-center">
+                            <div className="w-20 h-20 bg-slate-700 rounded-full flex items-center justify-center mb-4">
+                                <MapPin className="w-8 h-8 text-slate-400" />
                             </div>
-                            <h3 className="text-xl font-bold text-slate-900 mb-2 font-display">No reports yet</h3>
-                            <p className="text-slate-500 mb-8 max-w-sm mx-auto">Start visible contributions to the community by reporting water hyacinth in your area.</p>
+                            <h3 className="text-xl font-bold text-slate-50 mb-2 font-display">No reports yet</h3>
+                            <p className="text-slate-400 mb-8 max-w-sm mx-auto">Start visible contributions to the community by reporting water hyacinth in your area.</p>
                             <Link href="/submit">
                                 <Button variant="outline">Submit your first report</Button>
                             </Link>
@@ -262,19 +262,19 @@ export default function Dashboard() {
                                     <CardContent className="flex-grow flex flex-col justify-between pt-5 pb-5">
                                         <div>
                                             <div className="flex justify-between items-start mb-2">
-                                                <h4 className="font-bold text-slate-900">Lake/Water Body</h4>
+                                                <h4 className="font-bold text-slate-50">Lake/Water Body</h4>
                                             </div>
-                                            <p className="text-sm text-slate-500 line-clamp-2">
+                                            <p className="text-sm text-slate-400 line-clamp-2">
                                                 Reported at coordinates: {Number(sub.items) || 'Locating...'}
                                             </p>
                                         </div>
 
-                                        <div className="mt-4 pt-4 border-t border-slate-100">
+                                        <div className="mt-4 pt-4 border-t border-slate-700">
                                             <div className="flex justify-between items-end mb-2">
                                                 <span className="text-xs font-bold text-slate-400 uppercase tracking-wider">Density</span>
-                                                <span className="text-lg font-bold text-primary-700">{sub.coverage_percent.toFixed(1)}%</span>
+                                                <span className="text-lg font-bold text-primary-400">{sub.coverage_percent.toFixed(1)}%</span>
                                             </div>
-                                            <div className="w-full bg-slate-100 rounded-full h-1.5 overflow-hidden">
+                                            <div className="w-full bg-slate-700 rounded-full h-1.5 overflow-hidden">
                                                 <div
                                                     className="bg-primary-500 h-full rounded-full transition-all duration-1000"
                                                     style={{ width: `${sub.coverage_percent}%` }}

@@ -19,12 +19,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.className} ${outfit.variable} font-sans`}>
-        <div className="min-h-screen flex flex-col bg-slate-50">
+        <div className="min-h-screen flex flex-col bg-[#0a1628]">
           <Navbar />
           <main className="flex-grow">
             {children}
           </main>
-          <footer className="bg-white border-t border-slate-200 py-8 text-center text-slate-500 text-sm">
+          <footer className="bg-slate-900/80 border-t border-slate-700 py-8 text-center text-slate-400 text-sm">
             <p>© {new Date().getFullYear()} AquaWatch. Protecting our waters together.</p>
           </footer>
         </div>

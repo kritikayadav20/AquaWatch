@@ -110,15 +110,15 @@ export default function Navbar() {
     return (
         <nav className={cn(
             "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
-            scrolled ? "bg-white/80 backdrop-blur-md border-b border-slate-200/50 shadow-sm" : "bg-transparent border-transparent"
+            scrolled ? "bg-slate-900/80 backdrop-blur-md border-b border-slate-700/50 shadow-sm" : "bg-transparent border-transparent"
         )}>
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex justify-between items-center h-20">
                     {/* Logo */}
                     <Link href="/" className="flex items-center gap-2 group z-50">
                         <div className="w-8 h-8 rounded-lg bg-gradient-to-tr from-primary-600 to-secondary-500 group-hover:scale-105 transition-transform" />
-                        <span className="text-2xl font-bold text-slate-900 tracking-tight font-display">
-                            Aqua<span className="text-primary-600">Watch</span>
+                        <span className="text-2xl font-bold text-slate-50 tracking-tight font-display">
+                            Aqua<span className="text-primary-400">Watch</span>
                         </span>
                     </Link>
 
@@ -134,7 +134,7 @@ export default function Navbar() {
 
                                 {role === 'admin' && (
                                     <Link href="/admin">
-                                        <Button variant="ghost" size="sm" className="text-purple-600 hover:text-purple-700 hover:bg-purple-50">
+                                        <Button variant="ghost" size="sm" className="text-purple-400 hover:text-purple-300 hover:bg-purple-900/30">
                                             Admin Panel
                                         </Button>
                                     </Link>
@@ -146,7 +146,7 @@ export default function Navbar() {
                                         onClick={markAsRead}
                                         className={cn(
                                             "relative p-2.5 rounded-full transition-all duration-200",
-                                            showNotifications ? "bg-primary-50 text-primary-600" : "text-slate-500 hover:bg-slate-100 hover:text-slate-900"
+                                            showNotifications ? "bg-primary-900/50 text-primary-400" : "text-slate-400 hover:bg-slate-700 hover:text-slate-50"
                                         )}
                                     >
                                         <Bell className="w-5 h-5" />
@@ -160,29 +160,29 @@ export default function Navbar() {
 
                                     {/* Dropdown */}
                                     {showNotifications && (
-                                        <div className="absolute right-0 mt-4 w-96 bg-white rounded-2xl shadow-xl border border-slate-100 overflow-hidden animate-in fade-in zoom-in-95 duration-200 origin-top-right ring-1 ring-black/5">
-                                            <div className="p-4 border-b border-slate-50 flex justify-between items-center bg-slate-50/50">
-                                                <h3 className="font-semibold text-slate-900">Notifications</h3>
-                                                {unreadCount > 0 && <span className="text-xs text-primary-600 font-medium">Mark all read</span>}
+                                        <div className="absolute right-0 mt-4 w-96 bg-slate-800 rounded-2xl shadow-xl border border-slate-700 overflow-hidden animate-in fade-in zoom-in-95 duration-200 origin-top-right ring-1 ring-slate-700/50">
+                                            <div className="p-4 border-b border-slate-700 flex justify-between items-center bg-slate-900/50">
+                                                <h3 className="font-semibold text-slate-50">Notifications</h3>
+                                                {unreadCount > 0 && <span className="text-xs text-primary-400 font-medium">Mark all read</span>}
                                             </div>
                                             <div className="max-h-[400px] overflow-y-auto">
                                                 {notifications.length === 0 ? (
                                                     <div className="px-6 py-12 text-center flex flex-col items-center">
-                                                        <div className="w-12 h-12 bg-slate-50 rounded-full flex items-center justify-center mb-3">
-                                                            <Bell className="w-6 h-6 text-slate-300" />
+                                                        <div className="w-12 h-12 bg-slate-700 rounded-full flex items-center justify-center mb-3">
+                                                            <Bell className="w-6 h-6 text-slate-400" />
                                                         </div>
-                                                        <p className="text-slate-500">No new notifications</p>
+                                                        <p className="text-slate-400">No new notifications</p>
                                                     </div>
                                                 ) : (
                                                     notifications.map((n: any) => (
                                                         <div key={n.id} className={cn(
-                                                            "px-4 py-4 border-b border-slate-50 last:border-0 hover:bg-slate-50 transition-colors flex gap-3 items-start",
-                                                            !n.is_read ? 'bg-primary-50/30' : ''
+                                                            "px-4 py-4 border-b border-slate-700 last:border-0 hover:bg-slate-700/50 transition-colors flex gap-3 items-start",
+                                                            !n.is_read ? 'bg-primary-900/20' : ''
                                                         )}>
-                                                            <div className={cn("w-2 h-2 mt-2 rounded-full flex-shrink-0", !n.is_read ? "bg-primary-500" : "bg-slate-200")} />
+                                                            <div className={cn("w-2 h-2 mt-2 rounded-full flex-shrink-0", !n.is_read ? "bg-primary-400" : "bg-slate-600")} />
                                                             <div>
-                                                                <p className="text-sm text-slate-800 leading-snug">{n.message}</p>
-                                                                <p className="text-xs text-slate-400 mt-1.5 font-medium">{new Date(n.created_at).toLocaleDateString()}</p>
+                                                                <p className="text-sm text-slate-200 leading-snug">{n.message}</p>
+                                                                <p className="text-xs text-slate-500 mt-1.5 font-medium">{new Date(n.created_at).toLocaleDateString()}</p>
                                                             </div>
                                                         </div>
                                                     ))
@@ -198,7 +198,7 @@ export default function Navbar() {
                                     onClick={handleSignOut}
                                     variant="ghost"
                                     size="sm"
-                                    className="text-slate-500 hover:text-red-600 hover:bg-red-50"
+                                    className="text-slate-400 hover:text-red-400 hover:bg-red-900/30"
                                     icon={<LogOut className="w-4 h-4" />}
                                 >
                                     Sign Out
@@ -218,7 +218,7 @@ export default function Navbar() {
 
                     {/* Mobile Menu Button */}
                     <button
-                        className="md:hidden p-2 text-slate-600 hover:bg-slate-100 rounded-lg transition-colors"
+                        className="md:hidden p-2 text-slate-300 hover:bg-slate-700 rounded-lg transition-colors"
                         onClick={() => setIsMenuOpen(!isMenuOpen)}
                     >
                         {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -228,25 +228,25 @@ export default function Navbar() {
 
             {/* Mobile Navigation */}
             {isMenuOpen && (
-                <div className="md:hidden absolute top-20 left-0 right-0 bg-white border-b border-slate-100 shadow-xl p-4 animate-in slide-in-from-top-5 duration-200">
+                <div className="md:hidden absolute top-20 left-0 right-0 bg-slate-900 border-b border-slate-700 shadow-xl p-4 animate-in slide-in-from-top-5 duration-200">
                     <div className="flex flex-col gap-2">
                         {user ? (
                             <>
                                 <Link href="/dashboard" onClick={() => setIsMenuOpen(false)}>
-                                    <div className="flex items-center gap-3 p-3 rounded-xl hover:bg-slate-50 text-slate-700">
+                                    <div className="flex items-center gap-3 p-3 rounded-xl hover:bg-slate-800 text-slate-200">
                                         <LayoutDashboard className="w-5 h-5 text-slate-400" />
                                         <span className="font-medium">Dashboard</span>
                                     </div>
                                 </Link>
                                 {role === 'admin' && (
                                     <Link href="/admin" onClick={() => setIsMenuOpen(false)}>
-                                        <div className="flex items-center gap-3 p-3 rounded-xl hover:bg-purple-50 text-purple-700">
+                                        <div className="flex items-center gap-3 p-3 rounded-xl hover:bg-purple-900/30 text-purple-300">
                                             <Settings className="w-5 h-5 text-purple-400" />
                                             <span className="font-medium">Admin Panel</span>
                                         </div>
                                     </Link>
                                 )}
-                                <button onClick={handleSignOut} className="flex items-center gap-3 p-3 rounded-xl hover:bg-red-50 text-red-600 w-full text-left">
+                                <button onClick={handleSignOut} className="flex items-center gap-3 p-3 rounded-xl hover:bg-red-900/30 text-red-400 w-full text-left">
                                     <LogOut className="w-5 h-5" />
                                     <span className="font-medium">Sign Out</span>
                                 </button>

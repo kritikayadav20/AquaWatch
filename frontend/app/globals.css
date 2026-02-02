@@ -4,43 +4,44 @@
   --font-sans: var(--font-inter), "DM Sans", ui-sans-serif, system-ui, sans-serif;
   --font-display: var(--font-outfit), "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
 
-  /* Modern Ocean Palette */
-  --color-primary-50: #effcfc;
-  --color-primary-100: #d5f7f8;
-  --color-primary-200: #afeeef;
-  --color-primary-300: #7ae0e3;
-  --color-primary-400: #3fc8cd;
-  --color-primary-500: #1caab0;
-  --color-primary-600: #148991;
+  /* Dark Blue Primary Palette */
+  --color-primary-50: #e6f2ff;
+  --color-primary-100: #b3d9ff;
+  --color-primary-200: #80bfff;
+  --color-primary-300: #4da6ff;
+  --color-primary-400: #1a8cff;
+  --color-primary-500: #0073e6;
+  --color-primary-600: #005bb3;
   /* Main Brand Color */
-  --color-primary-700: #136e76;
-  --color-primary-800: #15585f;
-  --color-primary-900: #14494f;
-  --color-primary-950: #082f34;
+  --color-primary-700: #004480;
+  --color-primary-800: #002d4d;
+  --color-primary-900: #001a2e;
+  --color-primary-950: #000d1a;
 
-  /* Warm Sand/Coral Secondary (Human Touch) */
-  --color-secondary-50: #fff8f1;
-  --color-secondary-100: #ffefdb;
-  --color-secondary-200: #ffdab8;
-  --color-secondary-300: #ffbf8a;
-  --color-secondary-400: #ff9d54;
-  --color-secondary-500: #fc7b26;
-  --color-secondary-600: #ed5f18;
-  /* Vibrant Orange/Coral */
-  --color-secondary-700: #c44714;
-  --color-secondary-800: #9c3919;
-  --color-secondary-900: #7d3119;
-  --color-secondary-950: #44170a;
+  /* Accent Blue Secondary */
+  --color-secondary-50: #e6f0ff;
+  --color-secondary-100: #b3d1ff;
+  --color-secondary-200: #80b3ff;
+  --color-secondary-300: #4d94ff;
+  --color-secondary-400: #1a75ff;
+  --color-secondary-500: #0056cc;
+  --color-secondary-600: #004499;
+  /* Vibrant Blue */
+  --color-secondary-700: #003366;
+  --color-secondary-800: #002233;
+  --color-secondary-900: #001122;
+  --color-secondary-950: #000811;
 }
 
 @layer base {
   body {
-    @apply antialiased font-sans text-slate-800;
-    background-color: #fafbfc;
-    /* Extremely light grey/blue */
+    @apply antialiased font-sans text-slate-100;
+    background-color: #0a1628;
+    /* Dark blue gradient */
     background-image:
-      radial-gradient(at 0% 0%, rgba(20, 137, 145, 0.03) 0px, transparent 50%),
-      radial-gradient(at 100% 0%, rgba(252, 123, 38, 0.03) 0px, transparent 50%);
+      radial-gradient(at 0% 0%, rgba(0, 115, 230, 0.15) 0px, transparent 50%),
+      radial-gradient(at 100% 0%, rgba(0, 86, 204, 0.15) 0px, transparent 50%),
+      radial-gradient(at 50% 100%, rgba(0, 29, 77, 0.2) 0px, transparent 50%);
     background-attachment: fixed;
   }
 
@@ -50,17 +51,17 @@
   h4,
   h5,
   h6 {
-    @apply font-display font-medium tracking-tight text-slate-900;
+    @apply font-display font-medium tracking-tight text-slate-50;
   }
 }
 
 @layer utilities {
   .glass-panel {
-    @apply bg-white/60 backdrop-blur-xl border border-white/40 shadow-xl shadow-slate-200/50;
+    @apply bg-slate-800/60 backdrop-blur-xl border border-slate-700/40 shadow-xl shadow-slate-900/50;
   }
 
   .glass-card {
-    @apply bg-white/80 backdrop-blur-lg border border-slate-100 shadow-sm hover:shadow-lg hover:shadow-primary-500/5 transition-all duration-500;
+    @apply bg-slate-800/80 backdrop-blur-lg border border-slate-700/50 shadow-sm hover:shadow-lg hover:shadow-primary-500/20 transition-all duration-500;
   }
 
   .btn-gradient {

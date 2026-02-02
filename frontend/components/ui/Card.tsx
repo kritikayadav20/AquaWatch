@@ -8,9 +8,9 @@ interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
 
 export function Card({ className, variant = "default", ...props }: CardProps) {
     const variants = {
-        default: "bg-white border border-slate-100 shadow-[0_2px_20px_-4px_rgba(0,0,0,0.02)] rounded-3xl",
+        default: "bg-slate-800/90 border border-slate-700 shadow-[0_2px_20px_-4px_rgba(0,0,0,0.3)] rounded-3xl",
         glass: "glass-card rounded-3xl",
-        interactive: "bg-white border border-slate-100 shadow-[0_2px_20px_-4px_rgba(0,0,0,0.02)] hover:shadow-[0_8px_30px_-4px_rgba(0,0,0,0.04)] hover:border-primary-200/50 transition-all duration-500 rounded-3xl cursor-pointer group",
+        interactive: "bg-slate-800/90 border border-slate-700 shadow-[0_2px_20px_-4px_rgba(0,0,0,0.3)] hover:shadow-[0_8px_30px_-4px_rgba(0,115,230,0.2)] hover:border-primary-500/50 transition-all duration-500 rounded-3xl cursor-pointer group",
     };
 
     return (
@@ -23,7 +23,7 @@ export function CardHeader({ className, ...props }: React.HTMLAttributes<HTMLDiv
 }
 
 export function CardTitle({ className, ...props }: React.HTMLAttributes<HTMLHeadingElement>) {
-    return <h3 className={cn("text-xl font-bold italic leading-none tracking-tight text-slate-900 font-display", className)} {...props} />;
+    return <h3 className={cn("text-xl font-bold italic leading-none tracking-tight text-slate-50 font-display", className)} {...props} />;
 }
 
 export function CardContent({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) {
